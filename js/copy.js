@@ -4,7 +4,6 @@ const job = document.getElementById("job");
 const info = document.getElementById("info");
 const nextBtn = document.getElementById("next-btn");
 const preBtn = document.getElementById("pre-btn");
-const surprise = document.getElementById("surprise");
 
 const users = [
   {
@@ -36,36 +35,30 @@ const users = [
     text: "Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ",
   },
 ];
-let index = 0;
-const showUser = () => {
-  author.textContent = users[index].name;
-  job.textContent = users[index].job;
-  info.textContent = users[index].text;
-  img.src = users[index].img;
-};
-
-surprise.addEventListener("click", (e) => {
-  const rand = Math.floor(Math.random() * users.length);
-  index = rand;
-  showUser();
-});
 
 const clicking = (button) => {
+  let index = 0;
   button.addEventListener("click", (e) => {
     if (e.target.id == "next-btn") {
+      author.textContent = users[index].name;
+      job.textContent = users[index].job;
+      info.textContent = users[index].text;
+      img.src = users[index].img;
       index++;
-      if (index > users.length - 1) {
-        index = 0;
+      if (index > 3) {
+        nextBtn.style.display = "none";
       }
-      showUser();
     }
 
     if (e.target.id == "pre-btn") {
+      author.textContent = users[index].name;
+      job.textContent = users[index].job;
+      info.textContent = users[index].text;
+      img.src = users[index].img;
       index--;
-      if (index < 0) {
-        index = users.length - 1;
+      if (index <= 0) {
+        preBtn.style.display = "none";
       }
-      showUser();
     }
   });
 };
